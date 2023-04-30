@@ -4,7 +4,7 @@ import interfaces.Play;
 import models.Song;
 import java.util.Stack;
 
-public class BasicList implements Play {
+public class BasicList extends List implements Play{
 
     private String name;
     private Stack<Song> myList;
@@ -14,9 +14,21 @@ public class BasicList implements Play {
         this.myList = myList;
     }
 
+    public BasicList() {
+    }
+
     @Override
     public void play(){
-
+        Song primerCancion = myList.pop();
+        Stack<Song> aux = new Stack<>();
+        while (!myList.isEmpty()){
+            aux.add(myList.pop());
+        }
+        myList.add(primerCancion);
+        while(!aux.isEmpty()){
+            myList.add(aux.pop());
+        }
+        System.out.println("Reproduciendo: " + primerCancion.getName());
     }
 
     @Override
@@ -31,6 +43,8 @@ public class BasicList implements Play {
 
     @Override
     public void viewList(){
-
+        for(Song s : myList){
+            System.out.println(s.toString());
+        }
     }
 }

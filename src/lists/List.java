@@ -1,19 +1,45 @@
 package lists;
-import interfaces.Play;
 import models.Song;
-import java.util.Stack;
+import java.util.ArrayList;
+import interfaces.Play;
 
-public abstract class List<Song> {
+public abstract class List implements Play{
     private String name;
-    private List<Song> myList;
+    private ArrayList<Song> myList = new ArrayList<>();
 
+    public List() {
+    }
 
-    public List(String name, List<Song> myList) {
+    public List(String name, ArrayList<Song> myList) {
         this.name = name;
         this.myList = myList;
     }
 
-    public List<Song> getMyList() {
+    @Override
+    public void play() {
+
+    }
+
+    @Override
+    public void addSong(Song s) {
+
+    }
+
+    @Override
+    public void deleteSong() {
+
+    }
+
+    @Override
+    public void viewList() {
+        Integer i = myList.size();
+        for(int x=0 ; x<i; x++){
+            Song s = myList.get(x);
+            System.out.println(x + " - " + s.getAlbum().getArtist().getName() + " , " + s.getName());
+        }
+    }
+
+    public ArrayList<Song> getMyList() {
         return myList;
     }
 }
